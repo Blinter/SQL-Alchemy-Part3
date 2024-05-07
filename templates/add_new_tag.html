@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - Add Tag
+{% endblock %}
+
+{% block header %}
+ADD TAG
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr/>
+<form method="POST">
+    <p>Name<br/>
+        <input name="name" placeholder="Tag name is required">
+    </p>
+    <button>ADD NEW TAG</button>
+</form>
+<hr/>
+<button onclick="history.back()">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

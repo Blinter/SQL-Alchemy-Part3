@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - Edit Post
+{% endblock %}
+
+{% block header %}
+EDIT POST
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<form method="POST">
+    <p>Title<br/><input name="title" value="{{ post.title }}"></p>
+    <p>Content<br/><textarea cols="40" name="content" rows="10">{{
+    post.content}}</textarea>
+        {% if tags %}
+    <fieldset>
+        <legend>Tags</legend>
+        <div>
+            {% for tag in tags %}
+            {% set ns = namespace(found=false) %}
+            {% if post.post_tags %}
+            {% for post_tag in post.post_tags %}
+            {% if post_tag.tag == tag.id %}
+            {% set ns.found = true %}
+            <input checked id="tag-[{{tag.id}}]" name="tag-[{{tag.id}}]"
+                   type="checkbox"/>
+            {% endif %}
+            {% endfor %}
+            {% if not ns.found %}
+            <input id="tag-[{{tag.id}}]" name="tag-[{{tag.id}}]"
+                   type="checkbox"/>
+            {% endif %}
+            {% else %}
+            {% if not ns.found %}
+            <input id="tag-[{{tag.id}}]" name="tag-[{{tag.id}}]"
+                   type="checkbox"/>
+            {% endif %}
+            {% endif %}
+            <label for="{{tag.id}}">{{tag.name}}</label><br/>
+            {% endfor %}
+        </div>
+    </fieldset>
+    {% endif %}
+    </p>
+    <input type="submit" value="SAVE"/>
+</form>
+<hr/>
+<form action="delete" method="POST"><br/>
+    <input type="submit" value="DELETE POST"/>
+</form>
+<hr/>
+<br/>
+<button onclick="location.href='/posts/{{ post.id }}';">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - User Details
+{% endblock %}
+
+{% block header %}
+USER DETAILS
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<h2>{{ user.full_name }}</h2>
+<div>
+    <img src="{{ user.image_url }}" style="width: 50px; max-width: 50px;
+           height: 50px; max-height:50px;"/>
+</div>
+<hr>
+<h3>POSTS</h3>
+{% if user.posts %}
+<table>
+    {% for post in user.posts %}
+    <tr style="border: 2px solid black">
+        <td><a href="/posts/{{ post.id }}">{{ post.title }}</a>
+            {{ post.friendly_modified_on }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<hr>
+<div>
+    <p>
+        <button onclick="location.href='/users/{{user.id}}/edit';">EDIT
+            USER
+        </button>
+    </p>
+</div>
+<div>
+    <p>
+    <form action="/users/{{ user.id }}/delete" method="POST">
+        <input type="submit" value="DELETE USER"/>
+    </form>
+    <br/>
+
+    <button onclick="location.href='/users/{{user.id}}/posts/new';">ADD NEW POST
+        as {{user
+        .full_name}}
+    </button>
+</div>
+<hr>
+<button onclick="history.back()">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

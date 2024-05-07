@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - User List
+{% endblock %}
+
+{% block header %}
+USER LIST
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr/>
+<table>
+    {% for user in users %}
+    <tr style="border: 2px solid black">
+        <td>
+            <img alt="image" src="{{ user.image_url }}" style="width: 50px; max-width: 50px;
+             height: 50px; max-height:50px;"/>
+        </td>
+        <td>
+            <a href="/users/{{ user.id }}">{{ user.full_name }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <th>
+            <hr>
+            <button onclick="location.href='/users/new';">ADD USER</button>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <hr>
+            <button onclick="history.back()">GO BACK</button>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <hr>
+            <button onclick="location.href='/tags';">GO TO TAGS</button>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <hr>
+            <button onclick="location.href='/posts';">GO TO POSTS</button>
+        </th>
+    </tr>
+</table>
+<hr>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

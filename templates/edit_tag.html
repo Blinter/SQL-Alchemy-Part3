@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - Edit Tag
+{% endblock %}
+
+{% block header %}
+EDIT TAG
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr/>
+<form method="POST">
+    <p>Name
+        <br/>
+        <input name="name" value="{{ tag.name }}">
+        <br/>
+    </p>
+    <input type="submit" value="SAVE"/>
+    <br/><br/>
+</form>
+<hr/>
+<h3>POSTS WITH TAG</h3>
+<hr/>
+{% if posts %}
+<table>
+    {% for post in posts %}
+    <tr style="border: 2px solid black">
+        <td><a href="/posts/{{ post.id }}">{{ post.title }}</a>
+            {{ post.friendly_modified_on }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<hr/>
+{% endif %}
+<button onclick="location.href='/tags/{{tag.id}}'">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - Tag Details
+{% endblock %}
+
+{% block header %}
+TAG DETAILS
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<b>Tag Name</b>
+<h2>{% if tag %}{{ tag.name }}{% endif %}</h2>
+<hr>
+{% if posts %}
+<h3>POSTS WITH TAG</h3>
+<table>
+    {% for post in posts %}
+    <tr style="border: 2px solid black">
+        <td><a href="/posts/{{ post.id }}">{{ post.title }}</a>
+            {{ post.friendly_modified_on }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% endif %}
+<div>
+    <p>
+        <button onclick="location.href='/tags/{{ tag.id }}/edit';">
+            EDIT TAG
+        </button>
+    <form action="/tags/{{ tag.id }}/delete" method="POST">
+        <input type="submit" value="DELETE TAG"></input>
+    </form>
+    </p>
+</div>
+<hr>
+<button onclick="history.back()">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

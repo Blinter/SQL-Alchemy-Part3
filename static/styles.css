@@ -1,0 +1,9 @@
+.alert {
+    color: green
+}
+
+span.tag {
+    font-size: 14px;
+    background-color: cyan;
+    padding: 1px;
+}

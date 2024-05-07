@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - Add User
+{% endblock %}
+
+{% block header %}
+ADD USER
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<h3>New User Details</h3>
+<form method="POST">
+    <p>First Name
+        <input name="first_name" placeholder="First name is required">
+    </p>
+    <p>Middle Name
+        <input name="middle_name" placeholder="Middle Initial(s) (Optional)">
+    </p>
+    <p>Last Name
+        <input name="last_name" placeholder="Last name is required">
+    </p>
+    <p>Image URL <input name="image_url" placeholder="(Optional) Image URL"></p>
+    <button>ADD USER</button>
+</form>
+<hr>
+<button onclick="history.back()">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

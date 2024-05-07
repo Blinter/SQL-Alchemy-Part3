@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part III - New Post
+{% endblock %}
+
+{% block header %}
+NEW POST
+<i>
+    <small>
+        for
+        <a href=/users/{{user.id}}>
+            {{user.full_name}}
+        </a>
+    </small>
+</i>
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr/>
+<form method="POST">
+    <p>Title<br/>
+        <input name="title" placeholder="title must not be empty" value="">
+    </p>
+    <p>Content<br/>
+        <textarea cols="50" name="content" placeholder="content must not be empty"
+                  rows="5"></textarea>
+        {% if tags %}
+    <fieldset>
+        <legend>Tags</legend>
+        <div>
+            {% for tag in tags %}
+            <input id="tag-[{{tag.id}}]" name="tag-[{{tag.id}}]"
+                   type="checkbox"/>
+            <label for="{{tag.id}}">{{tag.name}}</label><br/>
+            {% endfor %}
+        </div>
+    </fieldset>
+    {% endif %}
+
+    </p>
+
+    <input type="submit" value="POST"/>
+</form>
+<hr/>
+<button onclick="history.back()">GO BACK</button>
+<br/><br/>
+<button onclick="location.href='/tags';">GO TO TAGS</button>
+<br/><br/>
+<button onclick="location.href='/posts';">GO TO POSTS</button>
+<br/><br/>
+<button onclick="location.href='/users';">GO TO USER LIST</button>
+<br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}
